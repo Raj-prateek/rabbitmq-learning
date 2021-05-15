@@ -17,7 +17,7 @@
 
 ### Installation
 
-To install rabbitmq i have used docker. I have used a docker image `rabbitmq:3-management-alpine`. Configured in [docker-compose.yaml](https://github.com/prateeksib/rabbitmq-learning/blob/main/docker-compose.yaml) file.
+To install rabbitmq we will used a docker image `rabbitmq:3-management-alpine`. Configured in [docker-compose.yaml](https://github.com/prateeksib/rabbitmq-learning/blob/main/docker-compose.yaml) file.
 
 ### Step to run RabbitMQ
 
