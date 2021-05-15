@@ -12,22 +12,22 @@
 - Than we crated two new queues named, `Q_default_1`, `Q_default_2`.
 - Than we published the message to the exchange with specific routing keys. Which than push the message to specific queue to which the message routing key match the exact name of the queue.
 
-### Direct Exchange Binding
+### Default Exchange Binding
 
-![Binding](https://github.com/prateeksib/rabbitmq-learning/blob/main/images/direct-exchange.png)
+![Binding](https://github.com/prateeksib/rabbitmq-learning/blob/main/images/default-exchange.png)
 
-### [Producer](https://github.com/prateeksib/rabbitmq-learning/blob/main/exchanges/direct/producer/producer.go)
+### [Producer](https://github.com/prateeksib/rabbitmq-learning/blob/main/exchanges/default/producer/producer.go)
 
-![Producer](https://github.com/prateeksib/rabbitmq-learning/blob/main/images/direct-producer.png)
+![Producer](https://github.com/prateeksib/rabbitmq-learning/blob/main/images/default-producer.png)
 
 ### Queued
 
-![Queued](https://github.com/prateeksib/rabbitmq-learning/blob/main/images/direct-queued-msg.png)
+![Queued](https://github.com/prateeksib/rabbitmq-learning/blob/main/images/default-queued-msg.png)
 
-### [Consumer](https://github.com/prateeksib/rabbitmq-learning/blob/main/exchanges/direct/consumer/consumer.go)
+### [Consumer](https://github.com/prateeksib/rabbitmq-learning/blob/main/exchanges/default/consumer/consumer.go)
 
-![Consumer](https://github.com/prateeksib/rabbitmq-learning/blob/main/images/direct-consumer.png)
+![Consumer](https://github.com/prateeksib/rabbitmq-learning/blob/main/images/default-consumer.png)
 
 ### Consumed Messages
 
-![Consumed Messages](https://github.com/prateeksib/rabbitmq-learning/blob/main/images/direct-consumed-msg.png)
+![Consumed Messages](https://github.com/prateeksib/rabbitmq-learning/blob/main/images/default-consumed-msg.png)
