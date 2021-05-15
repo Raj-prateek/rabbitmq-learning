@@ -6,6 +6,10 @@
 - [Introduction to Web Interface](https://github.com/prateeksib/rabbitmq-learning#introduction-to-web-interface)
 - [Messaging Systems & Exchanges](https://github.com/prateeksib/rabbitmq-learning#messaging-systems--exchanges)
 - [Types of Exchanges](https://github.com/prateeksib/rabbitmq-learning/tree/main/exchanges)
+- [Push vs Pull](https://github.com/prateeksib/rabbitmq-learning#push-vs-pull)
+- [Work/Task Queues(Competing Consumers Pattern)](https://github.com/prateeksib/rabbitmq-learning#work-task-queues-competing-consumers-pattern)
+- [Publish/Subscribe Pattern](https://github.com/prateeksib/rabbitmq-learning#publish-subscribe-pattern)
+- [Request-Reply Pattern](https://github.com/prateeksib/rabbitmq-learning#request-reply-pattern)
 
 ## Getting Started
 
@@ -90,3 +94,70 @@ Exchanges are the messages router elements of RabbitMQ
 - **Durable** : Same as queues durability. Durable exchanges survive after a service restarts.
 - **Auto Delete** : Whether to delete this exchange if no bound queue is left.
 - **Alternate Exchange** : Unroutable messages will be sent using alternate exchange.
+
+## Push vs Pull
+
+There are mainly two approach to consume message from a queue.
+
+- ### Push
+
+  - Consumer application subscribes to the queue and waits for messages.
+  - If there is already a message on the queue.
+  - Or when the new message arrives, it automatically sent _(pushed)_ to the consumer application.
+  - This is the suggested way of getting messages from a queue.
+
+- ### Pull
+
+  - Consumer application doesn't subscribe to queue.
+  - But it constantly checks(polls) the queue for new messages.
+  - If there is a message available on the queue, it is manually fetched (pulled) by the consumer application.
+  - Even though the pull mode is not recommended, it is the only solution when there is no live connection between message broker and consumer applications.
+
+## Work/Task Queues(Competing Consumers Pattern)
+
+- Work queues are used to distribute tasks among multiple workers.
+- Producers add tasks to a queue and these tasks are distributed to multiple worker applications.
+- Pull or push models can be used to distribute tasks among the workers.
+  - **Pull Model**: Workers get a message from the queue when they are available to perform a task.
+  - **Push Model**: Message broker system sends _(pushes)_ messages to the available workers automatically.
+
+### Issues
+
+- Messages must not be lost if the broker crashes.
+- Every message must be delivered and processed for exactly one time.
+- If the worker application crashes or fails to process a task, it must be re-added to the queue and delivered later.
+- There must be a limit for retrying failed tasks, otherwise the queue may be filled up by the constantly failing tasks.
+- Task workload should be fairly distributed among the workers.
+
+![Worker](https://github.com/prateeksib/rabbitmq-learning/blob/main/images/worker-simultaneously.png)
+
+![Worker with timestamp](https://github.com/prateeksib/rabbitmq-learning/blob/main/images/worker-simultaneously-with-time.png)
+
+## Publish/Subscribe Pattern
+
+- Publish-subscribe pattern is used to deliver the same message to all the subscriber.
+- There may be one or more subscribers.
+- In publish-subscriber pattern, there is one queue for each subscriber.
+- Message is delivered to each of these queues.
+- So, each subscriber gets a copy of the same messages.
+- This pattern is mostly used for publishing event notifications.
+
+## Request-Reply Pattern
+
+- Request-reply pattern is used when the publisher of the message, which is called requestor, needs to get the response for its message.
+- The request message mostly contains a query or a command.
+- Using request-reply pattern, remote procedure call _(RPC)_ scenarios can also be implemented.
+- In request-reply patterns, there are at least two queues:
+  - 1 for the requests.
+  - 1 for the replies. This queue also named as the callback queue for _RPC_ scenarios.
+
+## Priority Queues - Message Priorities
+
+- Configuring RabbitMQ queues and channels for message priorities:
+  - Set the max priority value of the queue by setting the `x-max-priority` argument. It can be 0 to 255. 0 means queue doesn't supports priorities. Values between 1 & 10 are recommended.
+  - Set the priority of the message using the `basicProperties.Priority`.
+  - Messages must stay in the queue for a while, to be ordered properly.
+  - Use `channel.Qos(...)` to set the `Prefetch Count` to 1.
+    _This will configure a worker's channel, not to send a new message until the worker finishes the last message_
+  - Set `Auto ACK` value to `false` while subscribing to a queue.
+  - if you don't configure the channel for not sending a new message until the worker acknowledges the last one, every incoming message will be immediately sent to a worker.
