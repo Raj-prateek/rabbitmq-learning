@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"os"
+	"time"
 
 	"github.com/streadway/amqp"
 )
@@ -30,6 +31,8 @@ func main() {
 		"Q_direct_info",
 	}
 
+	msgCount := 0
+
 	for _, queue := range fQ {
 		msgs, err := ch.Consume(
 			queue, //queue
@@ -47,9 +50,17 @@ func main() {
 
 		go func() {
 			for msg := range msgs {
+				msgCount = msgCount++
 				fmt.Println("Messages: ", string(msg.Body))
 			}
 		}()
+
+	}
+
+	select {
+	case <-time.After(time.Second * 10):
+		fmt.Printf("Total Messages Fetched: %d\n", msgCount)
+		fmt.Println("No more messages in queue. Timing out...")
 
 	}
 }
