@@ -14,12 +14,14 @@ func main() {
 		fmt.Println("Error:", err)
 		os.Exit(1)
 	}
+	defer conn.Close()
 
 	ch, err := conn.Channel()
 	if err != nil {
 		fmt.Println("Error:", err)
 		os.Exit(1)
 	}
+	defer ch.Close()
 
 	ch.ExchangeDeclare("X_fanout", "fanout", true, false, false, false, nil)
 	ch.QueueDeclare("Q_fanout_1", true, false, false, false, nil)
@@ -35,12 +37,8 @@ func main() {
 
 	if err != nil {
 		fmt.Println("Error in push:", err)
-		ch.Close()
-		conn.Close()
 		os.Exit(1)
 	}
 
 	fmt.Println("Message Pushed 🎉")
-	ch.Close()
-	conn.Close()
 }

@@ -2,10 +2,10 @@
 
 ## Content
 
-- Getting Started
-- Introduction to Web Interface
-- Messaging Systems & Exchanges
-- Types of Exchanges
+- [Getting Started](https://github.com/prateeksib/rabbitmq-learning#getting-started)
+- [Introduction to Web Interface](https://github.com/prateeksib/rabbitmq-learning#introduction-to-web-interface)
+- [Messaging Systems & Exchanges](https://github.com/prateeksib/rabbitmq-learning#messaging-systems--exchanges)
+- [Types of Exchanges](https://github.com/prateeksib/rabbitmq-learning/tree/main/exchanges)
 
 ## Getting Started
 
