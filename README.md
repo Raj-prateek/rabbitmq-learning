@@ -79,7 +79,7 @@ There are four tabs we will talk about them one by one:
 - **Dead-letter exchange** : Name of the exchange that expired or dropped messages will be automatically sent.
 - **Binding Configuration** : Association between queues and exchanges. A queue must be bound to a exchange, in order to recieve message from it.
 
-### Exchanges
+### [Exchanges](https://github.com/prateeksib/rabbitmq-learning/tree/main/exchanges)
 
 Exchanges are the messages router elements of RabbitMQ
 
