@@ -38,7 +38,7 @@ Note: A queue can be bound to 1 or more exchange.
 
 To run web interface open [localhost:15672](http://localhost:15672) on a browser. Login with the `guest` as a username and `guest` as a password.
 
-![Web Interface](https://github.com/prateeksib/rabbitmq-learning/blob/main/Screenshot%202021-05-14%20at%205.26.04%20PM.png)
+![Web Interface](https://github.com/prateeksib/rabbitmq-learning/blob/main/images/web-interface.png)
 
 There are four tabs we will talk about them one by one:
 
