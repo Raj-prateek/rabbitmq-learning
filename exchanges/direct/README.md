@@ -11,7 +11,7 @@
 
 ### Direct Exchange Binding
 
-![Binding](https://github.com/prateeksib/rabbitmq-learning/blob/main/images/fanout-direct.png)
+![Binding](https://github.com/prateeksib/rabbitmq-learning/blob/main/images/direct-exchange.png)
 
 ### [Producer](https://github.com/prateeksib/rabbitmq-learning/blob/main/exchanges/direct/producer/producer.go)
 
