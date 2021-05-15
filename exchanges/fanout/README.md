@@ -23,7 +23,7 @@
 
 ### [Consumer](https://github.com/prateeksib/rabbitmq-learning/blob/main/exchanges/fanout/consumer/consumer.go)
 
-![Consumer](https://github.com/prateeksib/rabbitmq-learning/blob/main/images/fanout-queued-msg.png)
+![Consumer](https://github.com/prateeksib/rabbitmq-learning/blob/main/images/fanout-consumer.png)
 
 ### Consumed Messages
 
