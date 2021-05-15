@@ -25,7 +25,7 @@ To install rabbitmq i have used docker. I have used a docker image `rabbitmq:3-m
 
 ### Elements of Messaging System
 
-- [**Message**](https://github.com/prateeksib/rabbitmq-learning#messages) : Data that is need to be processed. It can be any thing such as command, query or information. In rmq it is in `JSON` format. Every message has two parts: `routing information` and `payload`.
+- [**Message**](https://github.com/prateeksib/rabbitmq-learning#messages) : Data that is need to be processed. It can be any thing such as command, query or information. In rmq it is in `string` format. Every message has two parts: `routing information` and `payload`.
 - **Producer/Consumer** : It set a of code which creates and consume message. Can be on different tech stack for a same message.
 - [**Message Queues**](https://github.com/prateeksib/rabbitmq-learning#queues) : Message Queues is the list of available message sent by producer. Every queue should consists of unique name.
 - [**Broker,Router/Exchange**](https://github.com/prateeksib/rabbitmq-learning#exchanges) : Recieve & deliver messages. Brokers are intermediate elements who transmits message from senders to related reciever. Routers is component of message broker which decide the transferring of message to which queue or queues, based on the configuration. Routing elements are called as exchange.
